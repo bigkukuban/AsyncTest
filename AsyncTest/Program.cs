@@ -7,15 +7,17 @@ namespace AsyncTest
     {
         static void Main(string[] args)
         {
-            DecompiledProgramm.MainWork(args);      
+            DecompiledProgram.MainWork(args);      
+            //(new Program()).WaitForMe();
         }
 
         public async void WaitForMe()
         {
-            var resutl = await CallMe();            
-
-            Console.WriteLine("Result1 : "+ resutl + "Ende !");
+            var result = await CallMe();
+            var result2 = await CallMe();
             
+            Console.WriteLine("Result1 : " + result +" Result2: "+ result2 + "Ende !");
+
         }
 
         public async Task<int> CallMe()

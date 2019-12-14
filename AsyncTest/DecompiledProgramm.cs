@@ -1,119 +1,147 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AsyncTest.Program
+// Assembly: AsyncTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: DF77F245-8C53-42A7-BABC-8BEB52DCD6C6
+// Assembly location: C:\Users\Dimitri\source\repos\AsyncTest\AsyncTest\bin\Debug\netcoreapp3.1\AsyncTest.dll
+// Compiler-generated code is shown
+
+using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace AsyncTest
 {
-    internal class DecompiledProgramm
+    internal class DecompiledProgram
     {
         public static void MainWork(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            new DecompiledProgramm().WaitForMe();
+            new DecompiledProgram().WaitForMe();
         }
 
-//        [AsyncStateMachine(typeof(DecompiledProgramm.WaitForMeClass))]
-//        [DebuggerStepThrough]
+        //[AsyncStateMachine(typeof(DecompiledProgram.StateMachine_WaitForMe))]
+        //[DebuggerStepThrough]
         public void WaitForMe()
         {
-            DecompiledProgramm.WaitForMeClass stateMachine = new DecompiledProgramm.WaitForMeClass();
-            stateMachine._this = this;
-            stateMachine._methodBuilder = AsyncVoidMethodBuilder.Create();
-            stateMachine._someState = -1;
-            stateMachine._methodBuilder.Start<DecompiledProgramm.WaitForMeClass>(ref stateMachine);
+            DecompiledProgram.StateMachine_WaitForMe stateMachine = new DecompiledProgram.StateMachine_WaitForMe();
+            stateMachine._parentProgram = this;
+            stateMachine._taskBuilder = AsyncVoidMethodBuilder.Create();
+            stateMachine._state_1 = -1;
+            stateMachine._taskBuilder.Start<DecompiledProgram.StateMachine_WaitForMe>(ref stateMachine);
         }
 
- //       [AsyncStateMachine(typeof(DecompiledProgramm.CallMeClass))]
- //       [DebuggerStepThrough]
+        //[AsyncStateMachine(typeof(DecompiledProgram.StateMachineForCallMe))]
+        //[DebuggerStepThrough]
         public Task<int> CallMe()
         {
-            DecompiledProgramm.CallMeClass stateMachine = new DecompiledProgramm.CallMeClass();
-            stateMachine._this = this;
-            stateMachine._methodBuilder = AsyncTaskMethodBuilder<int>.Create();
-            stateMachine._someState = -1;
-            stateMachine._methodBuilder.Start<DecompiledProgramm.CallMeClass>(ref stateMachine);
-            return stateMachine._methodBuilder.Task;
+            DecompiledProgram.StateMachineForCallMe stateMachine = new DecompiledProgram.StateMachineForCallMe();
+            stateMachine._parentProgram = this;
+            stateMachine._taskBuilder = AsyncTaskMethodBuilder<int>.Create();
+            stateMachine._state_1 = -1;
+            stateMachine._taskBuilder.Start<DecompiledProgram.StateMachineForCallMe>(ref stateMachine);
+            return stateMachine._taskBuilder.Task;
         }
 
-        public DecompiledProgramm(): base()
+        public DecompiledProgram()
         {
-            
+
         }
 
-      //  [CompilerGenerated]
-        private sealed class WaitForMeClass : IAsyncStateMachine
+        //[CompilerGenerated]
+        private sealed class StateMachine_WaitForMe : IAsyncStateMachine
         {
-            public int _someState;
-            public AsyncVoidMethodBuilder  _methodBuilder;
-            public DecompiledProgramm _this;
-            private int _awaiterResult;
-            private int _awaiterTaskResult;
-            private TaskAwaiter<int> _taskAwaiter;
+            public int _state_1;
+            public AsyncVoidMethodBuilder _taskBuilder;
+            public DecompiledProgram _parentProgram;
+            private int result_1;
+            private int result_2;
+            private int state_3;
+            private int state_4;
+            private TaskAwaiter<int> _awaiterTask;
 
-            public WaitForMeClass(): base()
-            {                
+            public StateMachine_WaitForMe()
+            {
             }
 
             void IAsyncStateMachine.MoveNext()
             {
-                int num1 = this._someState;
+                int num1 = this._state_1;
                 try
                 {
-                    TaskAwaiter<int> awaiter;
+                    TaskAwaiter<int> awaiter1;
                     int num2;
-                    if (num1 != 0)
+                    TaskAwaiter<int> awaiter2;
+                    switch (num1)
                     {
-                        awaiter = this._this.CallMe().GetAwaiter();
-                        if (!awaiter.IsCompleted)
-                        {
-                            this._someState = num2 = 0;
-                            this._taskAwaiter = awaiter;
-                            DecompiledProgramm.WaitForMeClass stateMachine = this;
-                            this._methodBuilder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, DecompiledProgramm.WaitForMeClass>(ref awaiter, ref stateMachine);
-                            return;
-                        }
+                        case 0:
+                            awaiter1 = this._awaiterTask;
+                            this._awaiterTask = new TaskAwaiter<int>();
+                            this._state_1 = num2 = -1;
+                            break;
+                        case 1:
+                            awaiter2 = this._awaiterTask;
+                            this._awaiterTask = new TaskAwaiter<int>();
+                            this._state_1 = num2 = -1;
+                            goto label_8;
+                        default:
+                            awaiter1 = this._parentProgram.CallMe().GetAwaiter();
+                            if (!awaiter1.IsCompleted)
+                            {
+                                this._state_1 = num2 = 0;
+                                this._awaiterTask = awaiter1;
+                                DecompiledProgram.StateMachine_WaitForMe stateMachine = this;
+                                this._taskBuilder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, DecompiledProgram.StateMachine_WaitForMe>(ref awaiter1, ref stateMachine);
+                                return;
+                            }
+                            break;
                     }
-                    else
+                    this.state_3 = awaiter1.GetResult();
+                    this.result_1 = this.state_3;
+                    awaiter2 = this._parentProgram.CallMe().GetAwaiter();
+                    if (!awaiter2.IsCompleted)
                     {
-                        awaiter = this._taskAwaiter;
-                        this._taskAwaiter = new TaskAwaiter<int>();
-                        this._someState = num2 = -1;
+                        this._state_1 = num2 = 1;
+                        this._awaiterTask = awaiter2;
+                        DecompiledProgram.StateMachine_WaitForMe stateMachine = this;
+                        this._taskBuilder.AwaitUnsafeOnCompleted<TaskAwaiter<int>, DecompiledProgram.StateMachine_WaitForMe>(ref awaiter2, ref stateMachine);
+                        return;
                     }
-                    this._awaiterTaskResult = awaiter.GetResult();
-                    this._awaiterResult = this._awaiterTaskResult;
-                    Console.WriteLine("Result : " + this._awaiterResult.ToString() + "Ende !");
+                label_8:
+                    this.state_4 = awaiter2.GetResult();
+                    this.result_2 = this.state_4;
+                    Console.WriteLine("Result1 : " + this.result_1.ToString() + " Result2: " + this.result_2.ToString() + "Ende !");
                 }
                 catch (Exception ex)
                 {
-                    this._someState = -2;
-                    this._methodBuilder.SetException(ex);
+                    this._state_1 = -2;
+                    this._taskBuilder.SetException(ex);
                     return;
                 }
-                this._someState = -2;
-                this._methodBuilder.SetResult();
+                this._state_1 = -2;
+                this._taskBuilder.SetResult();
             }
 
-       //     [DebuggerHidden]
+            //[DebuggerHidden]
             void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine stateMachine)
             {
             }
         }
 
-   //     [CompilerGenerated]
-        private sealed class CallMeClass : IAsyncStateMachine
+        //[CompilerGenerated]
+        private sealed class StateMachineForCallMe : IAsyncStateMachine
         {
-            public int _someState;
-            public AsyncTaskMethodBuilder<int> _methodBuilder;
-            public DecompiledProgramm _this;
+            public int _state_1;
+            public AsyncTaskMethodBuilder<int> _taskBuilder;
+            public DecompiledProgram _parentProgram;
 
-            public CallMeClass()
-            {                
+            public StateMachineForCallMe()
+            {
+
             }
 
             void IAsyncStateMachine.MoveNext()
             {
-                int num = this._someState;
+                int num = this._state_1;
                 int result;
                 try
                 {
@@ -121,15 +149,15 @@ namespace AsyncTest
                 }
                 catch (Exception ex)
                 {
-                    this._someState = -2;
-                    this._methodBuilder.SetException(ex);
+                    this._state_1 = -2;
+                    this._taskBuilder.SetException(ex);
                     return;
                 }
-                this._someState = -2;
-                this._methodBuilder.SetResult(result);
+                this._state_1 = -2;
+                this._taskBuilder.SetResult(result);
             }
 
-     //       [DebuggerHidden]
+            //[DebuggerHidden]
             void IAsyncStateMachine.SetStateMachine(IAsyncStateMachine stateMachine)
             {
             }
