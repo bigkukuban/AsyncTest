@@ -7,22 +7,14 @@ namespace AsyncTest
     {
         static void Main(string[] args)
         {
-
-       //     DecompiledProgramm.MainWork(args);
-
-
-
-      //      Console.WriteLine("Hello World!");
-            Program newPrg = new Program();
-            newPrg.WaitForMe();
+            DecompiledProgramm.MainWork(args);      
         }
 
         public async void WaitForMe()
         {
-            var resutl = await CallMe();
-            var resut2 = await CallMe();
+            var resutl = await CallMe();            
 
-            Console.WriteLine("Result1 : "+ resutl + " Result2 :" + resut2 + "Ende !");
+            Console.WriteLine("Result1 : "+ resutl + "Ende !");
             
         }
 
